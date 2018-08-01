@@ -3,11 +3,10 @@ import RPi.GPIO as gp
 import tkinter as tk
 
 pins = [11, 12, 13, 15]
-hold_time = 0.2
+hold_time = 0.08   # 0.1 nebo 0.2 jsou vyzkoušené a fungují
 
 def setup():
 	gp.setmode(gp.BOARD)
-
 	for pin in pins:
 		gp.setup(pin, gp.OUT)
 
@@ -29,7 +28,7 @@ def backward():
         sleep(hold_time)
         gp.cleanup()
 
-def left():
+def right():
         setup()
         gp.output(pins[0], True)
         gp.output(pins[1], False)
@@ -38,7 +37,7 @@ def left():
         sleep(hold_time)
         gp.cleanup()
 
-def right():
+def left():
         setup()
         gp.output(pins[0], False)
         gp.output(pins[1], True)
@@ -51,7 +50,7 @@ def right():
 def Key_Press(event):
 	keypress = event.char
 	if keypress.lower() == 'w':
-		print("jedu dopředu")
+		print("jedu dopredu")
 		forward()
 	elif keypress.lower() == 's':
 		print("jedu dozadadu")
